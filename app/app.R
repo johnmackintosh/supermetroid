@@ -13,8 +13,8 @@ suppressPackageStartupMessages({
 library(supermetroid)
 
 # raincloud x-axis limits
-raincloud_xmin <- round(min(src_run_df$t_s)/60/60,2)
-raincloud_xmax <- round(max(src_run_df$t_s)/60/60,2)
+raincloud_xmin <- 1 # round(min(src_run_df$t_s)/60/60,2)
+raincloud_xmax <- max(supermetroid::src_df$rank, na.rm = TRUE)#round(max(src_run_df$t_s)/60/60,2)
 
 
 
@@ -170,9 +170,9 @@ ui <- dashboardPage(
     # run times tab ----
 
     output$all_run_raincloud <- renderPlot({
-      all_run_raincloud(xmin = input$runs_raincloud_lims[1],
-                        xmax = input$runs_raincloud_lims[2],
-                        base_size = 25)
+      all_run_raincloud(highest_rank = input$runs_raincloud_lims[1],
+                        lowest_rank = input$runs_raincloud_lims[2],
+                        font_size = 25)
     })
 
 
